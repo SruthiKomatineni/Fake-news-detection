@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+{% block sub_content %}
+<head>
+  
+    <!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
+<link href='https://fonts.googleapis.com/css?family=Acme' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Kavoon' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Patua One' rel='stylesheet'>
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+<link rel="stylesheet" href="{{url_for('static',filename='styles.css')}}">
+<link rel="stylesheet" href="/styles/styles.css">
+<link href='https://fonts.googleapis.com/css?family=Merienda One' rel='stylesheet'>
+<style>
+
+.purple-border textarea {
+    border: 1px solid #ba68c8;
+}
+.purple-border .form-control:focus {
+    border: 1px solid #ba68c8;
+    box-shadow: 0 0 0 0.2rem rgba(186, 104, 200, .25);
+}
+
+h3{
+  font-size: 2.75rem;
+}
+h4{
+  font-size: 1.75rem;
+}
+#detbutton,#newsbutton{
+  height: 41px;
+  width: 110px;
+
+  font-size: 1.75rem;
+}
+#img2{
+  height: 300px;
+  width: 300px;
+}
+body
+{
+  background-color:#d0f7e6; 
+  font-family: 'Acme';font-size: 22px;
+}
+  
+.topnav {
+  overflow: hidden;
+}
+.topnav .icon {
+  display: none;
+}
+@media screen and (max-width: 600px) {
+  .topnav li{
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive li {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+
+</style>
+</head>
+<div class="topnav" id="myTopnav">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+  <a class="navbar-brand" href="{{url_for('home')}}" style="font-size:25px;font-family: Patua One;"><i class="fas fa-search"></i> DebunkHub</a>
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link active" href="{{url_for('home')}}" style="font-size:20px;">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{url_for('about')}}" style="font-size:20px;">About us </a>
+    </li>
+    <a href="javascript:void(0);" style="font-size:20px;" class="icon" onclick="myFunction()">&#9776;</a>
+   
+  </ul>
+</nav>
+</div>
+<div class="container">
+  
+    <br><br>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <br>
+      <ul class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      </ul>
+  
+      
+      <div class="carousel-inner">
+  
+        <div class="carousel-item active">
+          <img class="img-responsive" src={{url_for('static',filename="f1.jpg")}} style="width:100%;" height="350px" width="1000px" >
+          
+        </div>
+  
+      </div> 
+    </div>
+
+
+  </div>
+  <div style="padding: 20px;">
+<div class="card shadow mb-4" style="padding:40px;">
+    <div align="center" style="color:black;padding: 20px;">
+      
+        <h3>
+          In today's era of fake news, have you ever wished to have the power to <br> FACT-CHECK the news articles you come across? <i class="fas fa-search"></i>
+        </h3>
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_msdmfngy.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
+        <!-- <img class="img-responsive" id="img2" src={{url_for('static',filename="truf.jpg")}} height="200px" width="200px" style="max-width: 100%;"> -->
+        <h3>Well, with the help of Machine Learning, we have developed a tool known as<br> DebunkHub,<br> to authenticate news articles by classifying them as FAKE or TRUE!</h3>
+        <br><br>
+       
+        <h4 class="text-primary">All you have to do is enter the news article you want to authenticate and find out if the viral news is indeed true or not!</h4>
+      
+      <i class="fas fa-angle-double-right prefix"></i><i class="fas fa-angle-double-right prefix"></i>
+      <br><br>
+      <h4>Click on Detect to use the DebunkHub Tool!</h4>
+        
+        
+        <a href="{{url_for('detect')}}" class="btn btn-primary" id="detbutton" role="button">Detect</a>
+        <br>
+        <a href="{{url_for('news')}}" class="btn btn-primary" id="newsbutton" role="button">News Feed</a>
+        <br>
+        </div>
+        <div class="container">
+          <div class="chatbox">
+              <div class="chatbox__support">
+                  <div class="chatbox__header">
+                      <div class="chatbox__image--header">
+                          <img src="https://img.icons8.com/color/48/000000/circled-user-female-skin-type-5--v1.png" alt="image">
+                      </div>
+                      <div class="chatbox__content--header">
+                          <h4 class="chatbox__heading--header">Chat support</h4>
+                          <p class="chatbox__description--header">Hi. My name is Sam. How can I help you?</p>
+                      </div>
+                  </div>
+                  <div class="chatbox__messages">
+                      <div></div>
+                  </div>
+                  <div class="chatbox__footer">
+                      <input id ='chatbox' type="text" placeholder="Write a message...">
+                      <button  onclick="getanswer()" acti class="chatbox__send--footer send__button">Send</button>
+                  </div>
+              </div>
+              <div class="chatbox__button">
+                  <button><img src="{{url_for('static',filename='chatbox-icon.png')}}" /></button>
+              </div>
+          </div>
+      </div>
+      
+          <script src="{{url_for('static',filename='app.js')}}"></script>
+  
+      </div>
+  </div>
+  </div>
+  <script>
+    // this function is used to set responsiveness for navbar when loaded in small screen i
+    function myFunction() {
+      var x = document.getElementById("myTopnav");
+      if (x.className === "topnav") {
+        x.className += " responsive";
+      } else {
+        x.className = "topnav";
+      }
+    }
+    </script>
+{% endblock %}

@@ -1,0 +1,524 @@
+{% extends 'base.html' %}
+{% block sub_content %}
+
+<head>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
+  <link href='https://fonts.googleapis.com/css?family=Acme' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Kavoon' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Patua One' rel='stylesheet'>
+  <!-- JQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.css"
+    integrity="sha512-C4k/QrN4udgZnXStNFS5osxdhVECWyhMsK1pnlk+LkC7yJGCqoYxW4mH3/ZXLweODyzolwdWSqmmadudSHMRLA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+  <link href='https://fonts.googleapis.com/css?family=Merienda One' rel='stylesheet'>
+  <style>
+    body {
+
+      background-color: #ebfff9;
+
+      font-family: 'Acme';
+      font-size: 22px;
+    }
+
+    .topnav {
+      overflow: hidden;
+
+    }
+
+    .topnav .icon {
+      display: none;
+    }
+
+    @media screen and (max-width: 600px) {
+      .topnav li {
+        display: none;
+      }
+
+      .topnav a.icon {
+        float: right;
+        display: block;
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      .topnav.responsive {
+        position: relative;
+      }
+
+      .topnav.responsive .icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      .topnav.responsive li {
+        float: none;
+        display: block;
+        text-align: left;
+      }
+    }
+
+    .page {
+      margin: 1em auto;
+      max-width: 768px;
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      height: 100%;
+    }
+
+    .box {
+      padding: 0.5em;
+      width: 100%;
+      margin: 0.5em;
+    }
+
+    .box-2 {
+      padding: 0.5em;
+      width: calc(100%/2 - 1em);
+    }
+
+    .options label,
+    .options input {
+      width: 4em;
+      padding: 0.5em 1em;
+    }
+
+    /* .btn{
+        background-color: white;
+        color: black;
+        border: 1px solid black;
+        padding: 0.5em 1em;
+        text-decoration: none;
+        margin: 0.8em 0.3em;
+        display: inline-block;
+        cursor: pointer;
+    } */
+    .hide {
+      display: none;
+    }
+
+    .img {
+      width: 100%;
+    }
+
+    .result {
+      height: 490px;
+      width: 870px;
+    }
+
+    /* .form-control{
+        width: 50%;
+        
+    } */
+    h1.text-center {
+      text-align: left;
+    }
+
+    .sub {
+      position: relative;
+      left: 400px;
+      bottom: 100px;
+    }
+
+    #comment {
+      font-size: medium;
+      width: 40.5em;
+      ;
+    }
+
+    #detbutton {
+      height: 41px;
+      width: 110px;
+
+      font-size: 1.75rem;
+    }
+
+    #choice {
+      margin: 20px;
+      height: 41px;
+      width: 110px;
+      font-size: 1.75rem;
+    }
+
+    .popupImg {
+      width: 400px;
+      height: 30rem;
+      background: #ebfff9;
+      border-radius: 30px;
+      border-color: black;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.1);
+      text-align: center;
+      padding: 30px 20px 20px;
+      color: #333;
+      visibility: hidden;
+      transition: transform 0.4s, top 0.4s;
+    }
+
+    .open-popupImg {
+      visibility: visible;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+
+    }
+
+    .popupImg#file-input {
+      width: 70%;
+      position: absolute;
+      margin-right: 2px;
+      margin-left: 62px;
+      padding-top: 3px;
+      font-size: 1.5rem;
+    }
+
+    .popupImg label {
+      margin-bottom: 3.5rem;
+      font-size: 3.5rem;
+    }
+
+    .card#blur.active {
+      filter: blur(20px);
+      pointer-events: none;
+
+    }
+
+    .popupTxt {
+      width: 31.25 rem;
+      height: 20 rem;
+      background: #ebfff9;
+      border-radius: 30px;
+      border-color: black;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.1);
+      text-align: center;
+      padding: 30px 30px 30px;
+      color: #333;
+      visibility: visible;
+      transition: transform 0.4s, top 0.4s;
+    }
+
+    .open-popupTxt {
+      visibility: visible;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+
+    #b1 {
+      color: red;
+      width: 35px;
+      position: absolute;
+      left: 20px;
+      top: 10px;
+      margin-bottom: 1.5rem;
+      border-radius: 50%;
+      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .popupUrl {
+      width: 31.25 rem;
+      height: 20 rem;
+      background: #ebfff9;
+      border-radius: 30px;
+      border-color: black;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.1);
+      text-align: center;
+      padding: 30px 30px 30px;
+      color: #333;
+      visibility: visible;
+      transition: transform 0.4s, top 0.4s;
+    }
+
+    .open-popupUrl {
+      visibility: visible;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+  </style>
+</head>
+<div class="topnav" id="myTopnav">
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+    <a class="navbar-brand" href="{{url_for('home')}}" style="font-size:25px;font-family: Patua One;"><i
+        class="fas fa-search"></i> DebunkHub</a>
+    <ul class="navbar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link active" href="{{url_for('home')}}" style="font-size:20px;">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{url_for('about')}}" style="font-size:20px;">About us</a>
+      </li>
+      <a href="javascript:void(0);" style="font-size:20px;" class="icon" onclick="myFunction()">&#9776;</a>
+    </ul>
+  </nav>
+</div>
+<br>
+<h5 style="padding-left: 30px;">{{prblm}}</h5>
+
+<div class="container">
+  <br><br><br>
+  <div class="card " style="padding:30px;" id="blur">
+    <div class="row">
+
+
+      <div class="col-sm" align="center" style="padding-left: 20px;">
+
+        <h2 style="font-size: 3rem;"> Want to find out whether a news article is fake or true? <i
+            class="fas fa-search"></i></h2>
+        <br>
+        <br>
+        <h4 class="text-danger" style="font-size: 2rem;">
+          Submit the news article you want to authenticate below and find out in seconds if the article is
+          indeed true &nbsp;&nbsp;<i class="fas fa-clipboard-check"></i><br><br>
+          Choose the input type below
+        </h4>
+        <br>
+        <button type="submit" class="btn btn-primary" id="choice" onclick="openImg()">Image</button>
+        <button type="submit" class="btn btn-primary" id="choice" onclick="openTxt()">Text</button>
+        <button type="submit" class="btn btn-primary" id="choice" onclick="openUrl()">URL</button>
+      </div>
+
+      <div class="col-sm-6" align="center">
+
+        <div>
+          <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+          <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_bo8vqwyw.json" background="transparent"
+            speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="popupImg" id="popupImg">
+  <button type="button" id="b1" onclick="closeImg()">X</button>
+  <div align="right" style="position: absolute; top: 0; right: 0;">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_fvrvzmi4.json" background="transparent" speed="1"
+      style="width: 150px; height: 150px;" loop autoplay></lottie-player>
+  </div>
+  <form action="{{url_for('detect')}}" method="POST" enctype="multipart/form-data">
+    <label for="file">Upload Image</label>
+    <input name="image" class="form-control" type="file" id="file-input" required accept="image/*" align="center"
+      style="width: 70%;">
+    <input type="hidden" name="x" id="crop-x">
+    <input type="hidden" name="y" id="crop-y">
+    <input type="hidden" name="width" id="crop-width">
+    <input type="hidden" name="height" id="crop-height">
+    <div class="checks" align="left" style="margin-top: 5px;">
+      <input type="checkbox" id="check1" name="check4" value="1">
+      <label for="check4" style="font-size: 1.5rem; font-weight: lighter;"> Does it contains Places and
+        Names?</label><br>
+    </div>
+
+    <div align="center">
+      <button type="submit" class="btn btn-primary" id="detbutton">Submit</button>
+    </div>
+  </form>
+
+  <div class="box-2">
+    <div class="result">
+
+    </div>
+  </div>
+  <div class="box-2 img-result hide">
+    <img src="" alt="" class="cropped">
+  </div>
+  <div class="box">
+    <div class="options hide">
+    </div>
+    <button onclick="cropimg()" class="btn save hide">Save</button>
+    <a href="" class="btn download hide">download</a>
+  </div>
+</div>
+
+<div class="popupTxt" id="popupTxt">
+  <button type="button" id="b1" onclick="closeTxt()">X</button>
+  <div align="right" style="position: absolute; top: 0; right: 0;">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_aXM2jEiatF.json" background="transparent"
+      speed="1" style="width: 150px; height: 150px;" loop autoplay></lottie-player>
+  </div>
+
+  <form action="{{url_for('detect')}}" method="POST">
+    <div class="form-group md-form" align="center"
+      style="position: relative; margin-top: 3.5rem; margin-bottom: 1.5rem;">
+      <h3 align="center" style="font-size: 2.5rem;">Enter the Text...</h3>
+      <textarea id="comment" class="md-textarea form-control" rows="6" name="text"></textarea>
+    </div>
+    <div class="checks" align="left">
+      <input type="checkbox" id="check1" name="check1" value="1">
+      <label for="check1" style="font-size: 1.5rem; font-weight: lighter;"> Does it contains Places and
+        Names?</label><br>
+      <input type="checkbox" id="check2" name="check2" value="1">
+      <label for="check2" style="font-size: 1.5rem; font-weight: lighter;"> is it a User Defined News?</label><br>
+    </div>
+    <div align="center">
+      <button type="submit" class="btn btn-primary" id="detbutton">Submit</button>
+    </div>
+
+  </form>
+</div>
+
+<div class="popupUrl" id="popupUrl">
+  <button type="button" id="b1" onclick="closeUrl()">X</button>
+  <div align="right" style="position: absolute; top: 0; right: 0;">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_8nok4b6w.json" background="transparent" speed="1"
+      style="width: 150px; height: 150px;" loop autoplay></lottie-player>
+  </div>
+
+  <form action="{{url_for('detect')}}" method="POST" id="url">
+    <div class="form-group md-form" align="center">
+      <h3 align="center" style="font-size: 2.5rem;">Enter the URL...</h3>
+      <textarea id="comment" class="md-textarea form-control" rows="6" name="texturl"></textarea>
+    </div>
+    <div class="checks" align="left">
+      <input type="checkbox" id="check1" name="check3" value="1">
+      <label for="check3" style="font-size: 1.5rem; font-weight: lighter;"> Does it contains Places and
+        Names?</label><br>
+    </div>
+    <div align="center">
+      <button type="submit" class="btn btn-primary" id="detbutton">Submit</button>
+    </div>
+
+  </form>
+</div>
+
+<br>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"
+  integrity="sha512-6lplKUSl86rUVprDIjiW8DuOniNX8UDoRATqZSds/7t6zCQZfaCe3e5zcGaQwxa8Kpn5RTM9Fvl3X2lLV4grPQ=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"
+  integrity="sha512-6lplKUSl86rUVprDIjiW8DuOniNX8UDoRATqZSds/7t6zCQZfaCe3e5zcGaQwxa8Kpn5RTM9Fvl3X2lLV4grPQ=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+  let popup = document.getElementById("popupImg")
+  let blur = document.getElementById("blur")
+
+  function openImg() {
+    blur.classList.add("active")
+    popup.classList.add("open-popupImg")
+
+  }
+  function closeImg() {
+    popup.classList.remove("open-popupImg")
+    blur.classList.remove("active")
+  }
+
+  let popup1 = document.getElementById("popupTxt")
+  let blur1 = document.getElementById("blur")
+
+  function openTxt() {
+    blur1.classList.add("active")
+    popup1.classList.add("open-popupTxt")
+
+  }
+  function closeTxt() {
+    popup1.classList.remove("open-popupTxt")
+    blur1.classList.remove("active")
+  }
+
+  let popup2 = document.getElementById("popupUrl")
+  let blur2 = document.getElementById("blur")
+
+  function openUrl() {
+    blur2.classList.add("active")
+    popup2.classList.add("open-popupUrl")
+
+  }
+  function closeUrl() {
+    popup2.classList.remove("open-popupUrl")
+    blur2.classList.remove("active")
+  }
+  var cropXInput = document.getElementById('crop-x');
+  var cropYInput = document.getElementById('crop-y');
+  var cropWidthInput = document.getElementById('crop-width');
+  var cropHeightInput = document.getElementById('crop-height');
+  let result = document.querySelector(".result"),
+    img_result = document.querySelector(".img-result"),
+    img_w = document.querySelector(".img_w"),
+    img_h = document.querySelector(".img_h"),
+    options = document.querySelector(".options")
+  save = document.querySelector(".save"),
+    cropped = document.querySelector(".cropped"),
+    dwn = document.querySelector(".download"),
+    upload = document.querySelector("#file-input");
+  var cropper = "hii";
+
+  upload.addEventListener('change', (e) => {
+    console.log(e)
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      if (e.target.result) {
+        let img = document.createElement("img");
+        img.id = "image";
+        img.src = e.target.result;
+        result.innerHTML = "";
+        result.appendChild(img);
+        save.classList.remove("hide");
+        options.classList.remove("hide");
+        cropper = new Cropper(img, {
+          crop: function (event) {
+            cropXInput.value = event.detail.x;
+            cropYInput.value = event.detail.y;
+            cropWidthInput.value = event.detail.width;
+            cropHeightInput.value = event.detail.height;
+          }
+        });
+      }
+    };
+    reader.readAsDataURL(e.target.files[0]);
+  });
+  function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+      x.className += " responsive";
+    } else {
+      x.className = "topnav";
+    }
+  }
+  function cropimg() {
+    save.classList.add("hide");
+    options.classList.add("hide");
+  }
+
+</script>
+{% endblock %}
